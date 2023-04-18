@@ -16,85 +16,62 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:elevation="0dp"
-            app:title="@string/app_name"
             app:menu="@menu/app_bar_menu"
-            app:titleTextColor="?attr/colorPrimary"
-            app:titleTextAppearance="?attr/textAppearanceHeadline5"/>
+            app:title="@string/app_name"
+            app:titleTextAppearance="?attr/textAppearanceHeadline5"
+            app:titleTextColor="?attr/colorPrimary" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="16dp"
-            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/box_layout"
-            android:elevation="5dp">
+            android:elevation="5dp"
+            android:orientation="horizontal">
 
             <EditText
-                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
+                android:layout_weight="1"
+                android:autofillHints="no"
+                android:background="@null"
+                android:hint="@string/search_hint"
+                android:inputType="text"
                 android:padding="10dp"
-                android:hint="검색어를 입력해주세요."
-                android:background="@null"/>
+                android:textColorHint="?attr/colorSecondary" />
 
             <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/search_layout"
-                android:src="@drawable/search"/>
+                android:contentDescription="@string/search_button"
+                android:src="@drawable/search" />
 
         </LinearLayout>
 
         <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
             style="@style/Widget.Material3.TabLayout.OnSurface"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabMode="fixed">
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="일별경매"
-                android:icon="@drawable/daily_auction"/>
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="가게별 정보"
-                android:icon="@drawable/store_info"/>
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="즐겨찾기"
-                android:icon="@drawable/star"/>
-
-        </com.google.android.material.tabs.TabLayout>
+            android:contentDescription="@string/tab_layout"
+            app:tabMode="fixed" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/fragment_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Scroll Test Scroll Test Scroll Test Scroll Test Scroll Test Scroll Test Scroll Test Scroll Test Scroll Test Scroll Test Scroll Test"
-                android:textSize="100dp" />
-
-        </LinearLayout>
+            android:layout_height="match_parent" />
 
     </androidx.core.widget.NestedScrollView>
 
