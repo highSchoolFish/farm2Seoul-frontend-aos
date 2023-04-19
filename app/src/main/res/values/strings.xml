@@ -3,4 +3,5 @@
     <string name="search_button">검색 버튼 이미지 영역입니다.</string>
     <string name="tab_layout">탭 레이아웃 영역입니다.</string>
     <string name="search_hint">검색어를 입력해주세요.</string>
+    <string name="nested_scroll_layout">검색어를 입력해주세요.</string>
 </resources>

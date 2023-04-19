@@ -2,9 +2,16 @@ package com.farm2seoul_frontend_aos.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.viewModels
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.get
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.farm2seoul_frontend_aos.presentation.adapter.FragmentViewPagerAdapter
 import com.farm2seoul_frontend_aos.R
 import com.farm2seoul_frontend_aos.databinding.ActivityMainBinding
@@ -13,6 +20,7 @@ import com.farm2seoul_frontend_aos.presentation.fragment.Fragment2
 import com.farm2seoul_frontend_aos.presentation.fragment.Fragment3
 import com.farm2seoul_frontend_aos.presentation.viewmodel.MainActivityViewModel
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private val mainActivityViewModel: MainActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
