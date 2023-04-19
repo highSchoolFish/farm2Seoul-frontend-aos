@@ -6,6 +6,7 @@
         android:id="@+id/item1"
         android:title="아이템"
         android:icon="@drawable/item"
+        android:iconTint="?attr/colorPrimary"
         app:showAsAction="always"/>
 
 </menu>

@@ -1,10 +1,11 @@
-package com.farm2seoul_frontend_aos
+package com.farm2seoul_frontend_aos.presentation.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.farm2seoul_frontend_aos.R
 
 class Fragment2 : Fragment() {
 

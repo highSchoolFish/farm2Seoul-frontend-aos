@@ -19,6 +19,8 @@
             app:menu="@menu/app_bar_menu"
             app:title="@string/app_name"
             app:titleTextAppearance="?attr/textAppearanceHeadline5"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:layout_scrollEffect="compress"
             app:titleTextColor="?attr/colorPrimary" />
 
         <LinearLayout

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">"<b>"서울시 농수산물 경매 시세"</b>"</string>
+    <string name="app_name">"<b>"Farm2 Seoul"</b>"</string>
     <string name="search_button">검색 버튼 이미지 영역입니다.</string>
     <string name="tab_layout">탭 레이아웃 영역입니다.</string>
     <string name="search_hint">검색어를 입력해주세요.</string>

@@ -1,17 +1,16 @@
-package com.farm2seoul_frontend_aos
+package com.farm2seoul_frontend_aos.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.core.graphics.drawable.toDrawable
-import androidx.core.view.get
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
+import com.farm2seoul_frontend_aos.presentation.adapter.FragmentViewPagerAdapter
+import com.farm2seoul_frontend_aos.R
 import com.farm2seoul_frontend_aos.databinding.ActivityMainBinding
+import com.farm2seoul_frontend_aos.presentation.fragment.Fragment1
+import com.farm2seoul_frontend_aos.presentation.fragment.Fragment2
+import com.farm2seoul_frontend_aos.presentation.fragment.Fragment3
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
     private var mBinding: ActivityMainBinding? = null
@@ -35,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         val tabName = listOf("일별경매", "가게별 정보", "즐겨찾기")
         val tabIcon = listOf(R.drawable.daily_auction, R.drawable.store_info, R.drawable.star)
 
-        /*viewPagerAdapter = FragmentViewPagerAdapter(this)
+/*        viewPagerAdapter = FragmentViewPagerAdapter(this)
         viewPagerAdapter.fragments.addAll(fragmentList)
         binding.fragmentLayout.adapter = viewPagerAdapter
 
@@ -48,6 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
+                binding.scrollLayout.fullScroll(NestedScrollView.FOCUS_UP)
                 when (tab?.position) {
                     0 -> replaceView(fragmentList[0])
                     1 -> replaceView(fragmentList[1])
@@ -62,6 +62,27 @@ class MainActivity : AppCompatActivity() {
                 binding.scrollLayout.fullScroll(NestedScrollView.FOCUS_UP)
             }
         })
+
+        /*binding.fragmentLayout.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                val recyclerView = binding.fragmentLayout.getChildAt(0) as RecyclerView
+                val view = recyclerView.layoutManager?.findViewByPosition(position)
+
+                view?.post {
+                    val wMeasureSpec = View.MeasureSpec.makeMeasureSpec(view.width, View.MeasureSpec.EXACTLY)
+                    val hMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+                    view.measure(wMeasureSpec, hMeasureSpec)
+
+                    if (binding.fragmentLayout.layoutParams.height != view.measuredHeight) {
+                        binding.fragmentLayout.layoutParams = (binding.fragmentLayout.layoutParams).also { lp -> lp.height = view.measuredHeight }
+                        binding.scrollLayout.post {
+                            binding.scrollLayout.requestLayout()
+                        }
+                    }
+                }
+            }
+        })*/
     }
 
     private fun replaceView(tab: Fragment) {

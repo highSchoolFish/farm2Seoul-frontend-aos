@@ -1,4 +1,4 @@
-package com.farm2seoul_frontend_aos
+package com.farm2seoul_frontend_aos.presentation.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
