@@ -29,6 +29,9 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = mBinding!!
     private lateinit var viewPagerAdapter: FragmentViewPagerAdapter
     private val mainActivityViewModel: MainActivityViewModel by viewModels()
+    private var fragment1: Fragment1? = null
+    private var fragment2: Fragment2? = null
+    private var fragment3: Fragment3? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -47,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         val fragmentList = listOf(Fragment1(), Fragment2(), Fragment3())
 
         /** ViewPager2 Fragment code */
-        /*
+
         val tabName = listOf("일별경매", "가게별 정보", "즐겨찾기")
         val tabIcon = listOf(R.drawable.daily_auction, R.drawable.store_info, R.drawable.star)
 
@@ -59,25 +62,57 @@ class MainActivity : AppCompatActivity() {
             tab.text = tabName[pos]
             tab.setIcon(tabIcon[pos])
         }.attach()
-        */
 
-        replaceView(fragmentList[0])
+
+        /*fragment1 = Fragment1()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_layout, fragment1!!).commit()*/
+
+        //replaceView(fragmentList[0])
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                binding.scrollLayout.fullScroll(NestedScrollView.FOCUS_UP)
-                when (tab?.position) {
+                //binding.scrollLayout.fullScroll(NestedScrollView.FOCUS_UP)
+                /*when (tab?.position) {
                     0 -> replaceView(fragmentList[0])
                     1 -> replaceView(fragmentList[1])
                     2 -> replaceView(fragmentList[2])
-                }
+                }*/
+                /*when (tab?.position) {
+                    0 -> {
+                        if (fragment1 == null) {
+                            fragment1 = Fragment1()
+                            supportFragmentManager.beginTransaction().add(R.id.fragment_layout, fragment1!!).commit()
+                        }
+                        if (fragment1 != null) supportFragmentManager.beginTransaction().show(fragment1!!).commit()
+                        if (fragment2 != null) supportFragmentManager.beginTransaction().hide(fragment2!!).commit()
+                        if (fragment3 != null) supportFragmentManager.beginTransaction().hide(fragment3!!).commit()
+                    }
+                    1 -> {
+                        if (fragment2 == null) {
+                            fragment2 = Fragment2()
+                            supportFragmentManager.beginTransaction().add(R.id.fragment_layout, fragment2!!).commit()
+                        }
+                        if (fragment1 != null) supportFragmentManager.beginTransaction().hide(fragment1!!).commit()
+                        if (fragment2 != null) supportFragmentManager.beginTransaction().show(fragment2!!).commit()
+                        if (fragment3 != null) supportFragmentManager.beginTransaction().hide(fragment3!!).commit()
+                    }
+                    2 -> {
+                        if (fragment3 == null) {
+                            fragment3 = Fragment3()
+                            supportFragmentManager.beginTransaction().add(R.id.fragment_layout, fragment3!!).commit()
+                        }
+                        if (fragment1 != null) supportFragmentManager.beginTransaction().hide(fragment1!!).commit()
+                        if (fragment2 != null) supportFragmentManager.beginTransaction().hide(fragment2!!).commit()
+                        if (fragment3 != null) supportFragmentManager.beginTransaction().show(fragment3!!).commit()
+                    }
+                }*/
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
             }
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
-                binding.scrollLayout.fullScroll(NestedScrollView.FOCUS_UP)
+                //binding.scrollLayout.fullScroll(NestedScrollView.FOCUS_UP)
             }
         })
     }

@@ -21,10 +21,10 @@ class PagingSource(
         return state.anchorPosition
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RowItems> = withContext(Dispatchers.IO){
-        val start = params.key ?: 1
-        return@withContext try {
-            val response = retrofitInterface.getGarakGradePrice(start.toString(), (start + 10).toString())
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RowItems> {
+        val start = params.key ?: 0
+        return try {
+            val response = retrofitInterface.getGarakGradePrice(start.toString(), (start + 9).toString())
             val items = response.garakGradePrice.row
             val prevKey = if (start == 1) null else start - 10
             val nextKey = if (items.isEmpty()) null else start + 10
