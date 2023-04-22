@@ -15,7 +15,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.farm2seoul_frontend_aos.presentation.adapter.FragmentViewPagerAdapter
 import com.farm2seoul_frontend_aos.R
 import com.farm2seoul_frontend_aos.databinding.ActivityMainBinding
-import com.farm2seoul_frontend_aos.presentation.fragment.Fragment1
+import com.farm2seoul_frontend_aos.presentation.fragment.DailyAuction
 import com.farm2seoul_frontend_aos.presentation.fragment.Fragment2
 import com.farm2seoul_frontend_aos.presentation.fragment.Fragment3
 import com.farm2seoul_frontend_aos.presentation.viewmodel.MainActivityViewModel
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = mBinding!!
     private lateinit var viewPagerAdapter: FragmentViewPagerAdapter
     private val mainActivityViewModel: MainActivityViewModel by viewModels()
-    private var fragment1: Fragment1? = null
+    private var dailyAuction: DailyAuction? = null
     private var fragment2: Fragment2? = null
     private var fragment3: Fragment3? = null
 
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fragmentManage() {
-        val fragmentList = listOf(Fragment1(), Fragment2(), Fragment3())
+        val fragmentList = listOf(DailyAuction(), Fragment2(), Fragment3())
 
         /** ViewPager2 Fragment code */
 

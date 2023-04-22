@@ -1,24 +1,18 @@
 package com.farm2seoul_frontend_aos.presentation.viewmodel
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.*
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.farm2seoul_frontend_aos.data.model.RowItems
 import com.farm2seoul_frontend_aos.data.repository.PagingSource
 import com.farm2seoul_frontend_aos.data.repository.RetrofitBuilder
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.text.DateFormat
-import java.text.DecimalFormat
-import java.text.SimpleDateFormat
 import javax.inject.Inject
 
 @HiltViewModel
-class Fragment1ViewModel @Inject constructor(
+class DailyAuctionViewModel @Inject constructor(
     application: Application
 ) : BaseViewModel(application) {
 

@@ -1,7 +1,10 @@
 package com.farm2seoul_frontend_aos.presentation.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.farm2seoul_frontend_aos.R
 import com.farm2seoul_frontend_aos.data.model.RowItems
 import com.farm2seoul_frontend_aos.databinding.DailyAuctionCardBinding
+import com.farm2seoul_frontend_aos.presentation.activity.DailyAuctionDetail
 import java.text.DecimalFormat
 
 class PagingDataRecyclerViewAdapter() :
@@ -43,6 +47,19 @@ class PagingDataRecyclerViewAdapter() :
                 val format = DecimalFormat("#,###")
                 val string = format.format(won[0].toInt()) + "원"
                 binding.dailyAuctionAvgprice.text = string
+
+                binding.root.setOnClickListener {
+                    val intent = Intent(binding.root?.context, DailyAuctionDetail::class.java)
+                    intent.putExtra("PUMNAME", item.PUMNAME)
+                    intent.putExtra("GRADENAME", item.GRADENAME)
+                    intent.putExtra("UNITQTY", item.UNITQTY.toString())
+                    intent.putExtra("UNITNAME", item.UNITNAME)
+                    intent.putExtra("MAXPRICE", item.MAXPRICE.toString())
+                    intent.putExtra("MINPRICE", item.MINPRICE.toString())
+                    intent.putExtra("AVGPRICE", item.AVGPRICE.toString())
+                    intent.putExtra("INVEST_DT", item.INVEST_DT)
+                    ContextCompat.startActivity(binding.root.context, intent, null)
+                }
             }
         }
     }
