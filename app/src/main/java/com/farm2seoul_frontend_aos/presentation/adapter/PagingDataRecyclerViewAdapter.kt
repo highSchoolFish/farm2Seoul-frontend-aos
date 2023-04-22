@@ -39,8 +39,8 @@ class PagingDataRecyclerViewAdapter() :
                     "중" -> binding.dailyAuctionGradeImage.setImageResource(R.drawable.middle_medal)
                     "하" -> binding.dailyAuctionGradeImage.setImageResource(R.drawable.low_medal)
                 }
-                val qty = item.UNITQTY.toString() + "/"
-                binding.dailyAuctionUnitqty.text = qty
+
+                binding.dailyAuctionUnitqty.text = item.UNITQTY.toString()
                 binding.dailyAuctionUnitname.text = item.UNITNAME
                 binding.dailyAuctionPumname.text = item.PUMNAME
                 val won = item.AVGPRICE.toString().split(".")

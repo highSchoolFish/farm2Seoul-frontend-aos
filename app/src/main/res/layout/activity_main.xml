@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
+    <!-- App Bar Layout -->
     <com.google.android.material.appbar.AppBarLayout
         style="@style/Widget.Material3.AppBarLayout"
         android:layout_width="match_parent"

@@ -4,7 +4,7 @@
     style="@style/Widget.Material3.CardView.Elevated"
     android:layout_width="match_parent"
     android:layout_height="170dp"
-    android:layout_margin="10dp"
+    android:layout_margin="6dp"
     app:cardCornerRadius="12dp"
     android:clickable="true"
     android:focusable="true"
@@ -38,6 +38,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10"
+                    android:textColor="?attr/colorPrimary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/"
                     android:textColor="?attr/colorPrimary" />
 
                 <TextView
