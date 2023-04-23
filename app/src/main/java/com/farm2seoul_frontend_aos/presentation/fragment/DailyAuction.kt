@@ -1,11 +1,10 @@
 package com.farm2seoul_frontend_aos.presentation.fragment
 
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -21,6 +20,7 @@ class DailyAuction : Fragment() {
     private val binding get() = mBinding!!
     lateinit var recyclerViewAdapter: PagingDataRecyclerViewAdapter
     private val fragment1ViewModel: DailyAuctionViewModel by viewModels()
+    private var error = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,10 +28,33 @@ class DailyAuction : Fragment() {
     ): View? {
         mBinding = DailyAuctionBinding.inflate(inflater, container, false)
 
+        //날짜 통신
         fragment1ViewModel.date()
+        //날짜 통신 값 Observe
         fragment1ViewModel.date.observe(viewLifecycleOwner, Observer {
             binding.auctionDate.text = it
         })
+        //날짜 통신시 Exception 발생시 Error Fragment 호출
+        fragment1ViewModel.error.observe(viewLifecycleOwner, Observer {
+            error = it
+
+            if (error) {
+                binding.auctionData.visibility = View.INVISIBLE
+                binding.nonAuctionData.visibility = View.VISIBLE
+            }
+            else {
+                binding.auctionData.visibility = View.VISIBLE
+                binding.nonAuctionData.visibility = View.INVISIBLE
+            }
+        })
+        //Retry 클릭시 프래그먼트 재호출
+        binding.retry.setOnClickListener {
+            getFragmentManager()?.let { it1 ->
+                (activity as MainActivity).refreshFragment(this,
+                    it1
+                )
+            }
+        }
 
         setAdapter()
         return binding.root

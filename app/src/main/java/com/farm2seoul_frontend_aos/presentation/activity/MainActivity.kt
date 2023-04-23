@@ -10,6 +10,8 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.get
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.farm2seoul_frontend_aos.presentation.adapter.FragmentViewPagerAdapter
@@ -123,5 +125,11 @@ class MainActivity : AppCompatActivity() {
         selectedFragment?.let {
             supportFragmentManager.beginTransaction().replace(R.id.fragment_layout, it).commit()
         }
+    }
+
+    // Fragment 새로고침
+    fun refreshFragment(fragment: Fragment, fragmentManager: FragmentManager) {
+        var ft: FragmentTransaction = fragmentManager.beginTransaction()
+        ft.detach(fragment).attach(fragment).commit()
     }
 }

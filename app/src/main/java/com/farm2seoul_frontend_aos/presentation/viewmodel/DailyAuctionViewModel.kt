@@ -8,6 +8,7 @@ import androidx.paging.cachedIn
 import com.farm2seoul_frontend_aos.data.repository.PagingSource
 import com.farm2seoul_frontend_aos.data.repository.RetrofitBuilder
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,14 +21,23 @@ class DailyAuctionViewModel @Inject constructor(
     private val _date = MutableLiveData<String>()
     val date: LiveData<String>
         get() = _date
+    private val _error = MutableLiveData<Boolean>()
+    val error: LiveData<Boolean>
+        get() = _error
+
 /*    private val _auctionResult = MutableLiveData<PagingData<RowItems>>() //페이징 데이터 옵저빙 (화면 회전 시 데이터 손실 방지)
     val auctionResult: LiveData<PagingData<RowItems>>
         get() = _auctionResult*/
 
     init {
         _date.value = "0000.00.00"
+        _error.value = false
     }
 
+    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        throwable.printStackTrace()
+        _error.value = true
+    }
 
     //페이징 데이터 스트림 설정
     val getData = Pager(PagingConfig(pageSize = 10)) {
@@ -37,7 +47,7 @@ class DailyAuctionViewModel @Inject constructor(
     }*/
 
     fun date() {
-        viewModelScope.launch {
+        viewModelScope.launch(exceptionHandler) {
             val response = retrofitInterface.getGarakGradePrice("1", "2")
             val date = response.garakGradePrice.row[0].INVEST_DT
             val year = date.substring(0, 4)

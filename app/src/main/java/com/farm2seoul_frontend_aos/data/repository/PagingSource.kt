@@ -47,12 +47,11 @@ class PagingSource(
             LoadResult.Error(e)
         }.also {//에러 메시지 출력
             if (it is LoadResult.Error) {
-                val message = when (it.throwable) {
-                    is IOException -> "네트워크 오류가 발생했습니다."
-                    is HttpException -> "서버 오류가 발생했습니다."
-                    else -> "알 수 없는 오류가 발생했습니다."
+                when (it.throwable) {
+                    is IOException -> Toast.makeText(context, "네트워크 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
+                    is HttpException -> Toast.makeText(context, "서버 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
                 }
-                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+
             }
         }
     }
