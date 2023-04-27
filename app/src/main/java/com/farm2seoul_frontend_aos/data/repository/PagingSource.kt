@@ -11,7 +11,7 @@ import retrofit2.HttpException
 import java.io.IOException
 
 class PagingSource(
-    private val retrofitInterface: RetrofitInterface,
+    private val retrofitInterface: OpenApiRetrofitInterface,
     private val context: Context,
     private val search_query: String
 ) : PagingSource<Int, RowItems>() {

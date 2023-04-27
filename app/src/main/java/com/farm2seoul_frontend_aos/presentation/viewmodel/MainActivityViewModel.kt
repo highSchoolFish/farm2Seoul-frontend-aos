@@ -1,13 +1,11 @@
 package com.farm2seoul_frontend_aos.presentation.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.cachedIn
 import com.farm2seoul_frontend_aos.data.repository.PagingSource
-import com.farm2seoul_frontend_aos.data.repository.RetrofitBuilder
+import com.farm2seoul_frontend_aos.data.repository.OpenApiRetrofitBuilder
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
@@ -19,7 +17,7 @@ class MainActivityViewModel @Inject constructor(
     application: Application
 ) : AndroidViewModel(application) {
 
-    private val retrofitInterface = RetrofitBuilder.create()
+    private val retrofitInterface = OpenApiRetrofitBuilder.create()
     private val _date = MutableLiveData<String>()
     val date: LiveData<String>
         get() = _date

@@ -25,8 +25,13 @@ class DailyAuctionDetail : AppCompatActivity() {
         setContentView(binding.root)
 
         initData()
-        initChart(binding.chart)
-        setData(binding.chart)
+
+        val name = intent.getStringExtra("PUMNAME").toString()
+        val grade = intent.getStringExtra("GRADENAME").toString()
+        val quantity = intent.getStringExtra("UNITQTY").toString() + "0"
+        val unit = intent.getStringExtra("UNITNAME").toString()
+        dailyAuctionDetailViewModel.initChart(binding.chart)
+        dailyAuctionDetailViewModel.setData(binding.chart,name, grade, quantity, unit)
     }
 
     override fun onDestroy() {
@@ -61,56 +66,5 @@ class DailyAuctionDetail : AppCompatActivity() {
             "중" -> binding.dailyAuctionGradeImage.setImageResource(R.drawable.middle_medal)
             "하" -> binding.dailyAuctionGradeImage.setImageResource(R.drawable.low_medal)
         }
-    }
-
-    private fun initChart(chart : LineChart) {
-        //그래프에 수치 구분선
-        chart.setDrawGridBackground(true)
-        //드래그 여부
-        chart.isDragEnabled = false
-        //X축으로 늘리기
-        chart.isScaleXEnabled = false
-        //Y축으로 늘리기
-        chart.isScaleYEnabled = false
-        //X축 노출 여부
-        chart.xAxis.isEnabled = false
-        //Y축 왼쪽 노출
-        chart.axisLeft.isEnabled = false
-        //Y축 왼쪽 라인 노출
-        chart.axisLeft.setDrawAxisLine(false)
-        //Y축 왼쪽 라인 grid 노출
-        chart.axisLeft.setDrawGridLines(false)
-        //Y축 왼쪽 라인에 라벨 노출
-        chart.axisLeft.setDrawLabels(false)
-        //Y축 오른쪽 라인 노출
-        chart.axisRight.setDrawAxisLine(false)
-        //Y축 오른쪽 라인 grid 노출
-        chart.axisRight.setDrawGridLines(false)
-        //Y축 오른쪽 라인 사용
-        chart.axisRight.isEnabled = false
-        //X축 노출
-        chart.xAxis.setDrawAxisLine(true)
-        //X축 grid 노출
-        chart.xAxis.setDrawGridLines(false)
-    }
-
-    private fun setData(chart : LineChart) {
-        chart.setScaleEnabled(false)
-        val title = "거래 현황"
-        val valueList = ArrayList<Entry>()
-
-        //temporary data
-        for (i in 0 until 5) {
-            valueList.add(Entry(i.toFloat(), i * 100f))
-        }
-
-        val lineDataSet = LineDataSet(valueList, title)
-        lineDataSet.setColors(
-            Color.rgb(207, 248, 246), Color.rgb(148, 212, 212), Color.rgb(136, 180, 187),
-            Color.rgb(118, 174, 175), Color.rgb(42, 109, 130))
-
-        val data = LineData(lineDataSet)
-        chart.data = data
-        chart.invalidate()
     }
 }

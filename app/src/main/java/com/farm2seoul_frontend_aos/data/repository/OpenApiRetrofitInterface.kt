@@ -4,7 +4,7 @@ import com.farm2seoul_frontend_aos.data.model.GarakGradePriceResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface RetrofitInterface {
+interface OpenApiRetrofitInterface {
 
     @GET("/766c476c676b6e793132345770716c57/json/GarakGradePrice/{start_index}/{end_index}/{pum_name}")
     suspend fun getGarakGradePrice(
