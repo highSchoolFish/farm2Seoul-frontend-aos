@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.farm2seoul_frontend_aos.databinding.FragmentDailyAuctionBinding
 import com.farm2seoul_frontend_aos.presentation.activity.MainActivity
 import com.farm2seoul_frontend_aos.presentation.adapter.PagingDataRecyclerViewAdapter
-import com.farm2seoul_frontend_aos.presentation.viewmodel.DailyAuctionViewModel
+import com.farm2seoul_frontend_aos.presentation.viewmodel.MainActivityViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -19,7 +19,7 @@ class DailyAuction : Fragment() {
     private var mBinding: FragmentDailyAuctionBinding? = null
     private val binding get() = mBinding!!
     lateinit var recyclerViewAdapter: PagingDataRecyclerViewAdapter
-    private val fragment1ViewModel: DailyAuctionViewModel by viewModels()
+    private val fragment1ViewModel: MainActivityViewModel by activityViewModels()
     private var error = false
 
     override fun onCreateView(
@@ -27,6 +27,28 @@ class DailyAuction : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         mBinding = FragmentDailyAuctionBinding.inflate(inflater, container, false)
+
+        fragment1ViewModel.getSearch().observe(viewLifecycleOwner, Observer {
+            if (it != "") {
+                recyclerViewAdapter = PagingDataRecyclerViewAdapter()
+                binding.recyclerView.adapter = recyclerViewAdapter
+
+                lifecycleScope.launch {
+                    fragment1ViewModel.getSearchData.collectLatest {
+                        recyclerViewAdapter.submitData(it)
+                    }
+                }
+            } else {
+                recyclerViewAdapter = PagingDataRecyclerViewAdapter()
+                binding.recyclerView.adapter = recyclerViewAdapter
+
+                lifecycleScope.launch {
+                    fragment1ViewModel.getData.collectLatest {
+                        recyclerViewAdapter.submitData(it)
+                    }
+                }
+            }
+        })
 
         //날짜 통신
         fragment1ViewModel.date()
@@ -53,7 +75,7 @@ class DailyAuction : Fragment() {
             (activity as MainActivity).refreshFragment(this)
         }
 
-        setAdapter()
+        //setAdapter()
         return binding.root
     }
 

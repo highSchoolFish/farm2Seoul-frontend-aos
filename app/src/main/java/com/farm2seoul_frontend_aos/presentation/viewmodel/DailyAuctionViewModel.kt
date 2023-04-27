@@ -17,7 +17,7 @@ class DailyAuctionViewModel @Inject constructor(
     application: Application
 ) : BaseViewModel(application) {
 
-    private val retrofitInterface = RetrofitBuilder.create()
+    /*private val retrofitInterface = RetrofitBuilder.create()
     private val _date = MutableLiveData<String>()
     val date: LiveData<String>
         get() = _date
@@ -25,13 +25,18 @@ class DailyAuctionViewModel @Inject constructor(
     val error: LiveData<Boolean>
         get() = _error
 
-/*    private val _auctionResult = MutableLiveData<PagingData<RowItems>>() //페이징 데이터 옵저빙 (화면 회전 시 데이터 손실 방지)
+    private val _search = MutableLiveData<String>()
+    val search: LiveData<String>
+        get() = _search
+
+*//*    private val _auctionResult = MutableLiveData<PagingData<RowItems>>() //페이징 데이터 옵저빙 (화면 회전 시 데이터 손실 방지)
     val auctionResult: LiveData<PagingData<RowItems>>
-        get() = _auctionResult*/
+        get() = _auctionResult*//*
 
     init {
         _date.value = "0000.00.00"
         _error.value = false
+        _search.value = ""
     }
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
@@ -39,17 +44,21 @@ class DailyAuctionViewModel @Inject constructor(
         _error.value = true
     }
 
+    fun search(search_query: String) {
+        _search.value = search_query
+    }
+
     //페이징 데이터 스트림 설정
     val getData = Pager(PagingConfig(pageSize = 10)) {
-        PagingSource(retrofitInterface, context)
-    }.flow.cachedIn(viewModelScope)/*.collect {
+        PagingSource(retrofitInterface, context, _search.value.toString())
+    }.flow.cachedIn(viewModelScope)*//*.collect {
         _auctionResult.value = it
-    }*/
+    }*//*
 
     fun date() {
         viewModelScope.launch(exceptionHandler) {
             _error.value = false
-            val response = retrofitInterface.getGarakGradePrice("1", "2")
+            val response = retrofitInterface.getGarakGradePrice("1", "2", "")
             val date = response.garakGradePrice.row[0].INVEST_DT
             val year = date.substring(0, 4)
             val month = date.substring(4, 6)
@@ -58,6 +67,6 @@ class DailyAuctionViewModel @Inject constructor(
             _date.value = string
         }
 
-    }
+    }*/
 
 }

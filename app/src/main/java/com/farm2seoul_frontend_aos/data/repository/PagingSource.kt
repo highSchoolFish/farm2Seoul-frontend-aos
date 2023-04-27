@@ -7,14 +7,13 @@ import android.widget.Toast
 import com.farm2seoul_frontend_aos.data.model.RowItems
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.io.IOException
 
 class PagingSource(
     private val retrofitInterface: RetrofitInterface,
-    private val context: Context
+    private val context: Context,
+    private val search_query: String
 ) : PagingSource<Int, RowItems>() {
 
     override fun getRefreshKey(state: PagingState<Int, RowItems>): Int? {
@@ -24,7 +23,7 @@ class PagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RowItems> {
         val start = params.key ?: 0
         return try {
-            val response = retrofitInterface.getGarakGradePrice(start.toString(), (start + 9).toString())
+            val response = retrofitInterface.getGarakGradePrice(start.toString(), (start + 9).toString(), search_query)
             val items = response.garakGradePrice.row
             val prevKey = if (start == 1) null else start - 10
             val nextKey = if (items.isEmpty()) null else start + 10
