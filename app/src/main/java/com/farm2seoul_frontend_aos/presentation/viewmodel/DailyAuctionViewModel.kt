@@ -48,6 +48,7 @@ class DailyAuctionViewModel @Inject constructor(
 
     fun date() {
         viewModelScope.launch(exceptionHandler) {
+            _error.value = false
             val response = retrofitInterface.getGarakGradePrice("1", "2")
             val date = response.garakGradePrice.row[0].INVEST_DT
             val year = date.substring(0, 4)

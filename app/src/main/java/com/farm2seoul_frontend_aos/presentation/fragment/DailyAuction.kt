@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import com.farm2seoul_frontend_aos.databinding.DailyAuctionBinding
+import com.farm2seoul_frontend_aos.databinding.FragmentDailyAuctionBinding
 import com.farm2seoul_frontend_aos.presentation.activity.MainActivity
 import com.farm2seoul_frontend_aos.presentation.adapter.PagingDataRecyclerViewAdapter
 import com.farm2seoul_frontend_aos.presentation.viewmodel.DailyAuctionViewModel
@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class DailyAuction : Fragment() {
-    private var mBinding: DailyAuctionBinding? = null
+    private var mBinding: FragmentDailyAuctionBinding? = null
     private val binding get() = mBinding!!
     lateinit var recyclerViewAdapter: PagingDataRecyclerViewAdapter
     private val fragment1ViewModel: DailyAuctionViewModel by viewModels()
@@ -26,7 +26,7 @@ class DailyAuction : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mBinding = DailyAuctionBinding.inflate(inflater, container, false)
+        mBinding = FragmentDailyAuctionBinding.inflate(inflater, container, false)
 
         //날짜 통신
         fragment1ViewModel.date()
@@ -49,11 +49,8 @@ class DailyAuction : Fragment() {
         })
         //Retry 클릭시 프래그먼트 재호출
         binding.retry.setOnClickListener {
-            getFragmentManager()?.let { it1 ->
-                (activity as MainActivity).refreshFragment(this,
-                    it1
-                )
-            }
+            fragment1ViewModel.date()
+            (activity as MainActivity).refreshFragment(this)
         }
 
         setAdapter()

@@ -2,23 +2,14 @@ package com.farm2seoul_frontend_aos.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.get
-import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import com.farm2seoul_frontend_aos.presentation.adapter.FragmentViewPagerAdapter
 import com.farm2seoul_frontend_aos.R
 import com.farm2seoul_frontend_aos.databinding.ActivityMainBinding
 import com.farm2seoul_frontend_aos.presentation.fragment.DailyAuction
-import com.farm2seoul_frontend_aos.presentation.fragment.Fragment2
+import com.farm2seoul_frontend_aos.presentation.fragment.Information
 import com.farm2seoul_frontend_aos.presentation.fragment.Fragment3
 import com.farm2seoul_frontend_aos.presentation.viewmodel.MainActivityViewModel
 import com.google.android.material.tabs.TabLayout
@@ -32,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewPagerAdapter: FragmentViewPagerAdapter
     private val mainActivityViewModel: MainActivityViewModel by viewModels()
     private var dailyAuction: DailyAuction? = null
-    private var fragment2: Fragment2? = null
+    private var fragment2: Information? = null
     private var fragment3: Fragment3? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,11 +40,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fragmentManage() {
-        val fragmentList = listOf(DailyAuction(), Fragment2(), Fragment3())
+        val fragmentList = listOf(DailyAuction(), Information(), Fragment3())
 
         /** ViewPager2 Fragment code */
 
-        val tabName = listOf("일별경매", "가게별 정보", "즐겨찾기")
+        val tabName = listOf("일별경매", "정보 마당", "즐겨찾기")
         val tabIcon = listOf(R.drawable.daily_auction, R.drawable.store_info, R.drawable.star)
 
         viewPagerAdapter = FragmentViewPagerAdapter(this)
@@ -128,8 +119,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Fragment 새로고침
-    fun refreshFragment(fragment: Fragment, fragmentManager: FragmentManager) {
-        var ft: FragmentTransaction = fragmentManager.beginTransaction()
-        ft.detach(fragment).attach(fragment).commit()
+    fun refreshFragment(fragment: Fragment) {
+        viewPagerAdapter.refreshFragment(0, fragment)
     }
 }

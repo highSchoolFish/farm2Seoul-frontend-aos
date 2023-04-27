@@ -11,4 +11,9 @@ class FragmentViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentSta
 
     override fun createFragment(position: Int): Fragment = fragments[position]
 
+    fun refreshFragment(index: Int, fragment: Fragment) {
+        fragments[index] = fragment
+        notifyItemChanged(index)
+    }
+
 }
