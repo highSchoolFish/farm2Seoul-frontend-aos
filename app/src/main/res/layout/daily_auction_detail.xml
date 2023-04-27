@@ -278,16 +278,21 @@
             </com.google.android.material.card.MaterialCardView>
 
             <!-- 버튼 -->
-            <LinearLayout
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggle_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp">
+                android:layout_marginRight="16dp"
+                app:checkedButton="@+id/this_week"
+                app:singleSelection="true"
+                app:selectionRequired="true">
 
                 <Button
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:id="@+id/this_week"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -295,22 +300,24 @@
                     android:text="이번주 가격변동"/>
 
                 <Button
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:id="@+id/recent_4week"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:padding="13dp"
                     android:text="최근 4주간"/>
 
                 <Button
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:id="@+id/recent_3month"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="13dp"
                     android:text="최근 3개월간"/>
 
-            </LinearLayout>
+            </com.google.android.material.button.MaterialButtonToggleGroup>
 
             <!-- 차트 -->
             <com.github.mikephil.charting.charts.LineChart

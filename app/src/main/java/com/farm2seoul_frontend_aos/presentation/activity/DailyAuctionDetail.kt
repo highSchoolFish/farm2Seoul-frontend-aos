@@ -31,7 +31,25 @@ class DailyAuctionDetail : AppCompatActivity() {
         val quantity = intent.getStringExtra("UNITQTY").toString() + "0"
         val unit = intent.getStringExtra("UNITNAME").toString()
         dailyAuctionDetailViewModel.initChart(binding.chart)
-        dailyAuctionDetailViewModel.setData(binding.chart,name, grade, quantity, unit)
+        dailyAuctionDetailViewModel.setThisWeekData(binding.chart, name, grade, quantity, unit)
+
+        binding.toggleButton.addOnButtonCheckedListener { group, checkedId, isChecked ->
+            if (isChecked) {
+                when (checkedId) {
+                    R.id.this_week -> {
+                        dailyAuctionDetailViewModel.setThisWeekData(binding.chart, name, grade, quantity, unit)
+                    }
+
+                    R.id.recent_4week -> {
+                        dailyAuctionDetailViewModel.setRecent4WeekData(binding.chart, name, grade, quantity, unit)
+                    }
+
+                    R.id.recent_3month -> {
+                        dailyAuctionDetailViewModel.setRecent3MonthData(binding.chart, name, grade, quantity, unit)
+                    }
+                }
+            }
+        }
     }
 
     override fun onDestroy() {

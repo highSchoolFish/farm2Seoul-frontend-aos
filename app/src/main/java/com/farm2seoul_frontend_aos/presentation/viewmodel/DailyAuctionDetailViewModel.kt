@@ -23,19 +23,59 @@ class DailyAuctionDetailViewModel @Inject constructor(
 
     private val retrofitInterface: Farm2SeoulRetrofitInterface = Farm2SeoulRetrofitBuilder.create()
 
-/*    fun getThisWeek(name: String, grade: String, quantity: String, unit: String) {
-        viewModelScope.launch {
-            response = retrofitInterface.getThisWeek(name, grade, quantity, unit)
-        }
-    }*/
-
-    fun setData(chart : LineChart, name: String, grade: String, quantity: String, unit: String) {
+    fun setThisWeekData(chart : LineChart, name: String, grade: String, quantity: String, unit: String) {
         viewModelScope.launch {
             chart.setScaleEnabled(false)
 
             val title = "거래 현황"
             val valueList = ArrayList<Entry>()
             val response = retrofitInterface.getThisWeek(name, grade, quantity, unit)
+
+            response.forEachIndexed { index, value ->
+                valueList.add(Entry(index.toFloat(), value.average.toFloat()))
+            }
+
+            val lineDataSet = LineDataSet(valueList, title)
+            /*lineDataSet.setColors(
+                Color.rgb(207, 248, 246), Color.rgb(148, 212, 212), Color.rgb(136, 180, 187),
+                Color.rgb(118, 174, 175), Color.rgb(42, 109, 130))*/
+
+            val data = LineData(lineDataSet)
+            chart.data = data
+            chart.invalidate()
+        }
+    }
+
+    fun setRecent4WeekData(chart : LineChart, name: String, grade: String, quantity: String, unit: String) {
+        viewModelScope.launch {
+            chart.setScaleEnabled(false)
+
+            val title = "거래 현황"
+            val valueList = ArrayList<Entry>()
+            val response = retrofitInterface.getRecent4Week(name, grade, quantity, unit)
+
+            response.forEachIndexed { index, value ->
+                valueList.add(Entry(index.toFloat(), value.averagePrice.toFloat()))
+            }
+
+            val lineDataSet = LineDataSet(valueList, title)
+            /*lineDataSet.setColors(
+                Color.rgb(207, 248, 246), Color.rgb(148, 212, 212), Color.rgb(136, 180, 187),
+                Color.rgb(118, 174, 175), Color.rgb(42, 109, 130))*/
+
+            val data = LineData(lineDataSet)
+            chart.data = data
+            chart.invalidate()
+        }
+    }
+
+    fun setRecent3MonthData(chart : LineChart, name: String, grade: String, quantity: String, unit: String) {
+        viewModelScope.launch {
+            chart.setScaleEnabled(false)
+
+            val title = "거래 현황"
+            val valueList = ArrayList<Entry>()
+            val response = retrofitInterface.getRecent3Month(name, grade, quantity, unit)
 
             response.forEachIndexed { index, value ->
                 valueList.add(Entry(index.toFloat(), value.average.toFloat()))
