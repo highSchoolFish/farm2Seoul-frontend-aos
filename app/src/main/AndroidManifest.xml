@@ -27,6 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.activity.DailyAuctionDetail"/>
+        <activity android:name=".presentation.activity.InformationDetail"/>
     </application>
 
 </manifest>

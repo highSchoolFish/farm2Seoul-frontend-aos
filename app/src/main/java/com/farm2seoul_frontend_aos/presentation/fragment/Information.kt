@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.farm2seoul_frontend_aos.R
 import com.farm2seoul_frontend_aos.databinding.FragmentInfomationBinding
+import com.farm2seoul_frontend_aos.presentation.activity.DailyAuctionDetail
+import com.farm2seoul_frontend_aos.presentation.activity.InformationDetail
 import com.farm2seoul_frontend_aos.presentation.adapter.ImageSlideViewPagerAdapter
 
 class Information : Fragment(), View.OnClickListener {
@@ -131,8 +133,8 @@ class Information : Fragment(), View.OnClickListener {
                 }
 
                 R.id.market_time -> {
-                    /*val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.garak.co.kr/chulha/indexChulha.do"))
-                    startActivity(intent)*/
+                    val intent = Intent(context, InformationDetail::class.java)
+                    startActivity(intent)
                 }
 
                 R.id.market_inuri -> {

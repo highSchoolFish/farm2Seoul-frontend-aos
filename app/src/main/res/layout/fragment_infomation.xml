@@ -10,41 +10,54 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:orientation="vertical">
 
-        <com.farm2seoul_frontend_aos.presentation.adapter.NestedScrollableHost
+        <!-- 이미지 -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp">
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/image_slider_viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-        </com.farm2seoul_frontend_aos.presentation.adapter.NestedScrollableHost>
-
-        <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
-            android:id="@+id/image_slider_viewpager_indicator"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:dotsColor="?attr/colorPrimary"
-            app:dotsStrokeWidth="8dp"
-            app:dotsStrokeColor="?attr/colorSurfaceVariant"
-            app:dotsSpacing="10dp"/>
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical">
 
+            <com.farm2seoul_frontend_aos.presentation.adapter.NestedScrollableHost
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/image_slider_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </com.farm2seoul_frontend_aos.presentation.adapter.NestedScrollableHost>
+
+            <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+                android:id="@+id/image_slider_viewpager_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                app:dotsColor="?attr/colorPrimary"
+                app:dotsStrokeWidth="5dp"
+                app:dotsStrokeColor="?attr/colorSurfaceVariant"
+                app:dotsSpacing="10dp"
+                app:dotsSize="10dp"/>
+
+        </LinearLayout>
+
+        <!-- 시장 목록 -->
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
 
                 <Button
                     android:id="@+id/market1"
@@ -137,17 +150,135 @@
 
         </HorizontalScrollView>
 
+        <!-- 링크 그리드 -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="390dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="390dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/Widget.Material3.CardView.Elevated"
+                    android:id="@+id/market"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardElevation="1dp"
+                    app:contentPadding="10dp"
+                    app:cardCornerRadius="10dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/link_image"/>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.card.MaterialCardView
+                        style="@style/Widget.Material3.CardView.Elevated"
+                        android:id="@+id/market_notice"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_margin="5dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardElevation="1dp"
+                        app:contentPadding="10dp"
+                        app:cardCornerRadius="10dp">
+
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_gravity="center|top"
+                            android:src="@drawable/icon1"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|bottom"
+                            android:textStyle="bold"
+                            android:text="공지 바로가기"/>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        style="@style/Widget.Material3.CardView.Elevated"
+                        android:id="@+id/market_chulha"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_margin="5dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardElevation="1dp"
+                        app:contentPadding="10dp"
+                        app:cardCornerRadius="10dp">
+
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_gravity="center|top"
+                            android:src="@drawable/icon2"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|bottom"
+                            android:textStyle="bold"
+                            android:text="출하자 신고 피해접수"/>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        style="@style/Widget.Material3.CardView.Elevated"
+                        android:id="@+id/market_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_margin="5dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardElevation="1dp"
+                        app:contentPadding="10dp"
+                        app:cardCornerRadius="10dp">
+
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_gravity="center|top"
+                            android:src="@drawable/icon3"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|bottom"
+                            android:textStyle="bold"
+                            android:text="시장 경매시간"/>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <com.google.android.material.card.MaterialCardView
                 style="@style/Widget.Material3.CardView.Elevated"
-                android:id="@+id/market"
+                android:id="@+id/market_inuri"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_height="120dp"
                 android:layout_margin="5dp"
                 android:clickable="true"
                 android:focusable="true"
@@ -155,124 +286,15 @@
                 app:contentPadding="10dp"
                 app:cardCornerRadius="10dp">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/link_image"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text="아이누리 바로가기"/>
 
             </com.google.android.material.card.MaterialCardView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <com.google.android.material.card.MaterialCardView
-                    style="@style/Widget.Material3.CardView.Elevated"
-                    android:id="@+id/market_notice"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_margin="5dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardElevation="1dp"
-                    app:contentPadding="10dp"
-                    app:cardCornerRadius="10dp">
-
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_gravity="center|top"
-                        android:src="@drawable/icon1"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|bottom"
-                        android:textStyle="bold"
-                        android:text="공지 바로가기"/>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    style="@style/Widget.Material3.CardView.Elevated"
-                    android:id="@+id/market_chulha"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_margin="5dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardElevation="1dp"
-                    app:contentPadding="10dp"
-                    app:cardCornerRadius="10dp">
-
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_gravity="center|top"
-                        android:src="@drawable/icon2"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|bottom"
-                        android:textStyle="bold"
-                        android:text="출하자 신고 피해접수"/>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    style="@style/Widget.Material3.CardView.Elevated"
-                    android:id="@+id/market_time"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_margin="5dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardElevation="1dp"
-                    app:contentPadding="10dp"
-                    app:cardCornerRadius="10dp">
-
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_gravity="center|top"
-                        android:src="@drawable/icon3"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|bottom"
-                        android:textStyle="bold"
-                        android:text="시장 경매시간"/>
-
-                </com.google.android.material.card.MaterialCardView>
-
-            </LinearLayout>
-
         </LinearLayout>
-
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.Material3.CardView.Elevated"
-            android:id="@+id/market_inuri"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_margin="5dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardElevation="1dp"
-            app:contentPadding="10dp"
-            app:cardCornerRadius="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                android:text="아이누리 바로가기"/>
-
-        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
 
