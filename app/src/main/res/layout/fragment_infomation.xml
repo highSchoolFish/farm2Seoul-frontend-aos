@@ -56,95 +56,119 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
 
                 <Button
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:id="@+id/market1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="13dp"
-                    android:text="서울청과"/>
+                    android:text="서울청과"
+                    android:textSize="16sp"/>
 
                 <Button
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:id="@+id/market2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
                     android:padding="13dp"
-                    android:text="농협(공)"/>
+                    android:text="농협(공)"
+                    android:textSize="16sp"/>
 
                 <Button
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:id="@+id/market3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
                     android:padding="13dp"
-                    android:text="중앙청과"/>
+                    android:text="중앙청과"
+                    android:textSize="16sp"/>
 
                 <Button
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:id="@+id/market4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
                     android:padding="13dp"
-                    android:text="동화청과"/>
+                    android:text="동화청과"
+                    android:textSize="16sp"/>
 
                 <Button
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:id="@+id/market5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
                     android:padding="13dp"
-                    android:text="한국청과"/>
+                    android:text="한국청과"
+                    android:textSize="16sp"/>
 
                 <Button
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:id="@+id/market6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
                     android:padding="13dp"
-                    android:text="대아청과"/>
+                    android:text="대아청과"
+                    android:textSize="16sp"/>
 
                 <Button
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:id="@+id/market7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
                     android:padding="13dp"
-                    android:text="강동수산"/>
+                    android:text="강동수산"
+                    android:textSize="16sp"/>
 
                 <Button
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:id="@+id/market8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
                     android:padding="13dp"
-                    android:text="수협(공)"/>
+                    android:text="수협(공)"
+                    android:textSize="16sp"/>
 
                 <Button
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:id="@+id/market9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
                     android:padding="13dp"
-                    android:text="서울건해"/>
+                    android:text="서울건해"
+                    android:textSize="16sp"/>
 
                 <Button
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:id="@+id/market10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
                     android:padding="13dp"
-                    android:text="서부청과"/>
+                    android:text="서부청과"
+                    android:textSize="16sp"/>
 
                 <Button
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:id="@+id/market11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
                     android:padding="13dp"
-                    android:text="강서청과"/>
+                    android:text="강서청과"
+                    android:textSize="16sp"/>
 
             </LinearLayout>
 
@@ -202,8 +226,8 @@
                         app:cardCornerRadius="10dp">
 
                         <ImageView
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:layout_gravity="center|top"
                             android:src="@drawable/icon1"/>
 
@@ -229,8 +253,8 @@
                         app:cardCornerRadius="10dp">
 
                         <ImageView
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:layout_gravity="center|top"
                             android:src="@drawable/icon2"/>
 
@@ -256,8 +280,8 @@
                         app:cardCornerRadius="10dp">
 
                         <ImageView
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:layout_gravity="center|top"
                             android:src="@drawable/icon3"/>
 
