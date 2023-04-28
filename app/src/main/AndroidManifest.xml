@@ -28,6 +28,7 @@
         </activity>
         <activity android:name=".presentation.activity.DailyAuctionDetail"/>
         <activity android:name=".presentation.activity.InformationDetail"/>
+        <activity android:name=".presentation.activity.FavoritesDetail"/>
     </application>
 
 </manifest>

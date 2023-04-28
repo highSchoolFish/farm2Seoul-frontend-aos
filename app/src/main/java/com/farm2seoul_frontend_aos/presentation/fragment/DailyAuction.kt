@@ -71,12 +71,25 @@ class DailyAuction : Fragment() {
         })
         //Retry 클릭시 프래그먼트 재호출
         binding.retry.setOnClickListener {
+            recyclerViewAdapter = PagingDataRecyclerViewAdapter()
+            binding.recyclerView.adapter = recyclerViewAdapter
+
+            lifecycleScope.launch {
+                fragment1ViewModel.getData.collectLatest {
+                    recyclerViewAdapter.submitData(it)
+                }
+            }
             fragment1ViewModel.date()
             (activity as MainActivity).refreshFragment(this)
         }
 
         //setAdapter()
         return binding.root
+    }
+
+    override fun onDestroy() {
+        mBinding = null
+        super.onDestroy()
     }
 
     private fun setAdapter() {

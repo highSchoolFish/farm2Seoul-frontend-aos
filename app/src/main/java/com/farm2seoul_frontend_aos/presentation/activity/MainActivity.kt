@@ -10,7 +10,7 @@ import com.farm2seoul_frontend_aos.R
 import com.farm2seoul_frontend_aos.databinding.ActivityMainBinding
 import com.farm2seoul_frontend_aos.presentation.fragment.DailyAuction
 import com.farm2seoul_frontend_aos.presentation.fragment.Information
-import com.farm2seoul_frontend_aos.presentation.fragment.Fragment3
+import com.farm2seoul_frontend_aos.presentation.fragment.Favorites
 import com.farm2seoul_frontend_aos.presentation.viewmodel.MainActivityViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     private val mainActivityViewModel: MainActivityViewModel by viewModels()
     private var dailyAuction: DailyAuction? = null
     private var fragment2: Information? = null
-    private var fragment3: Fragment3? = null
+    private var fragment3: Favorites? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fragmentManage() {
-        val fragmentList = listOf(DailyAuction(), Information(), Fragment3())
+        val fragmentList = listOf(DailyAuction(), Information(), Favorites())
 
         /** ViewPager2 Fragment code */
 

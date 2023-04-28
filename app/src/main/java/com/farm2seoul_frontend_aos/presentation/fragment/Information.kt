@@ -45,6 +45,11 @@ class Information : Fragment(), View.OnClickListener {
         return binding.root
     }
 
+    override fun onDestroy() {
+        mBinding = null
+        super.onDestroy()
+    }
+
     private val imageSlideList = ArrayList<Int>().apply {
         add(R.drawable.market_place1)
         add(R.drawable.market_place2)

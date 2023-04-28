@@ -27,6 +27,7 @@ class MainActivityViewModel @Inject constructor(
 
     private val _search = MutableLiveData<String>()
 
+
 /*    private val _auctionResult = MutableLiveData<PagingData<RowItems>>() //페이징 데이터 옵저빙 (화면 회전 시 데이터 손실 방지)
     val auctionResult: LiveData<PagingData<RowItems>>
         get() = _auctionResult*/
@@ -35,6 +36,7 @@ class MainActivityViewModel @Inject constructor(
         _date.value = "0000.00.00"
         _error.value = false
         _search.value = ""
+
     }
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
@@ -46,7 +48,10 @@ class MainActivityViewModel @Inject constructor(
         _search.value = search_query
     }
 
+
     fun getSearch() : MutableLiveData<String> = _search
+
+
 
     //페이징 데이터 스트림 설정
     val getData = Pager(PagingConfig(pageSize = 10)) {

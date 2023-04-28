@@ -61,4 +61,6 @@
     <color name="md_theme_dark_surfaceTint">#61DBB7</color>
     <color name="md_theme_dark_outlineVariant">#3F4945</color>
     <color name="md_theme_dark_scrim">#000000</color>
+    <color name="folder">#FED175</color>
+    <color name="unfolder">#B7B7B7</color>
 </resources>
