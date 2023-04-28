@@ -9,8 +9,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.farm2seoul_frontend_aos.R
 import com.farm2seoul_frontend_aos.data.repository.Farm2SeoulApplication
+import com.farm2seoul_frontend_aos.data.repository.FavoritesSearchInterface
+import com.farm2seoul_frontend_aos.presentation.activity.MainActivity
 
-class FavoritesRecyclerViewAdapter(private val context : Context) : RecyclerView.Adapter<FavoritesRecyclerViewAdapter.ViewHolder>()  {
+class FavoritesRecyclerViewAdapter(private val context: Context, private val favoritesSearchInterface : FavoritesSearchInterface) : RecyclerView.Adapter<FavoritesRecyclerViewAdapter.ViewHolder>()  {
     var datas = mutableListOf<String>()
 
     override fun onCreateViewHolder(
@@ -39,7 +41,7 @@ class FavoritesRecyclerViewAdapter(private val context : Context) : RecyclerView
             else folder_image.setImageResource(R.drawable.unfolder)
 
             folder_image.setOnClickListener {
-
+                favoritesSearchInterface.itemSearch(item)
             }
         }
     }

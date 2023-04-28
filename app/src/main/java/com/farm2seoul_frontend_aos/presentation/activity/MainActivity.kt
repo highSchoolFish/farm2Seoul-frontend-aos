@@ -1,5 +1,6 @@
 package com.farm2seoul_frontend_aos.presentation.activity
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.searchButton.setOnClickListener {
             mainActivityViewModel.search(binding.editText.text.toString())
+            binding.fragmentLayout.currentItem = 0
         }
     }
 
