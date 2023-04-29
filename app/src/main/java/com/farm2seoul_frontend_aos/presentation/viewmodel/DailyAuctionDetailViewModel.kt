@@ -1,9 +1,9 @@
 package com.farm2seoul_frontend_aos.presentation.viewmodel
 
+import android.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.farm2seoul_frontend_aos.data.repository.Farm2SeoulRetrofitBuilder
-import com.farm2seoul_frontend_aos.data.repository.Farm2SeoulRetrofitInterface
+import com.farm2seoul_frontend_aos.data.repository.*
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
@@ -38,9 +38,13 @@ class DailyAuctionDetailViewModel @Inject constructor() : ViewModel() {
             }
 
             val lineDataSet = LineDataSet(valueList, title)
-            /*lineDataSet.setColors(
-                Color.rgb(207, 248, 246), Color.rgb(148, 212, 212), Color.rgb(136, 180, 187),
-                Color.rgb(118, 174, 175), Color.rgb(42, 109, 130))*/
+            lineDataSet.setColors(Color.parseColor("#2C5044"))
+            lineDataSet.setCircleColor(Color.parseColor("#2C5044"))
+            lineDataSet.lineWidth = 3f
+            lineDataSet.circleRadius = 5f
+            lineDataSet.circleHoleRadius = 3f
+            lineDataSet.valueTextSize = 15f
+            chart.xAxis.valueFormatter = ThisWeekFormatter()
 
             val data = LineData(lineDataSet)
             chart.data = data
@@ -68,9 +72,13 @@ class DailyAuctionDetailViewModel @Inject constructor() : ViewModel() {
             }
 
             val lineDataSet = LineDataSet(valueList, title)
-            /*lineDataSet.setColors(
-                Color.rgb(207, 248, 246), Color.rgb(148, 212, 212), Color.rgb(136, 180, 187),
-                Color.rgb(118, 174, 175), Color.rgb(42, 109, 130))*/
+            lineDataSet.setColors(Color.parseColor("#2C5044"))
+            lineDataSet.setCircleColor(Color.parseColor("#2C5044"))
+            lineDataSet.lineWidth = 3f
+            lineDataSet.circleRadius = 5f
+            lineDataSet.circleHoleRadius = 3f
+            lineDataSet.valueTextSize = 15f
+            chart.xAxis.valueFormatter = Recent4WeekFormatter()
 
             val data = LineData(lineDataSet)
             chart.data = data
@@ -98,9 +106,13 @@ class DailyAuctionDetailViewModel @Inject constructor() : ViewModel() {
             }
 
             val lineDataSet = LineDataSet(valueList, title)
-            /*lineDataSet.setColors(
-                Color.rgb(207, 248, 246), Color.rgb(148, 212, 212), Color.rgb(136, 180, 187),
-                Color.rgb(118, 174, 175), Color.rgb(42, 109, 130))*/
+            lineDataSet.setColors(Color.parseColor("#2C5044"))
+            lineDataSet.setCircleColor(Color.parseColor("#2C5044"))
+            lineDataSet.lineWidth = 3f
+            lineDataSet.circleRadius = 5f
+            lineDataSet.circleHoleRadius = 3f
+            lineDataSet.valueTextSize = 15f
+            chart.xAxis.valueFormatter = Recent3MonthFormatter()
 
             val data = LineData(lineDataSet)
             chart.data = data
@@ -110,43 +122,62 @@ class DailyAuctionDetailViewModel @Inject constructor() : ViewModel() {
 
     /** 차트 설정 **/
     fun initChart(chart: LineChart) {
-        //그래프에 수치 구분선
-        chart.setDrawGridBackground(false)
-        //드래그 여부
-        chart.isDragEnabled = false
-        //터치 여부
-        chart.setTouchEnabled(false)
-        //X축으로 늘리기
-        chart.isScaleXEnabled = false
-        //Y축으로 늘리기
-        chart.isScaleYEnabled = false
-        //X축 노출 여부
-        chart.xAxis.isEnabled = true
-        //Y축 왼쪽 노출
-        chart.axisLeft.isEnabled = false
-        //Y축 왼쪽 라인 노출
-        chart.axisLeft.setDrawAxisLine(false)
-        //Y축 왼쪽 라인 grid 노출
-        chart.axisLeft.setDrawGridLines(false)
-        //Y축 왼쪽 라인에 라벨 노출
-        chart.axisLeft.setDrawLabels(false)
-        //Y축 오른쪽 라인 노출
-        chart.axisRight.setDrawAxisLine(false)
-        //Y축 오른쪽 라인 grid 노출
-        chart.axisRight.setDrawGridLines(false)
-        //Y축 오른쪽 라인 사용
-        chart.axisRight.isEnabled = false
-        //X축 노출
-        chart.xAxis.setDrawAxisLine(false)
-        //X축 grid 노출
-        chart.xAxis.setDrawGridLines(true)
-        //라벨 설정
-        chart.description.text = "(평균가 기준)"
-        //라벨 위치 설정
-        chart.xAxis.position = XAxis.XAxisPosition.BOTTOM
-        //간격 설정
-        chart.xAxis.granularity = 1f
-        //라벨 크기
-        chart.xAxis.textSize = 10f
+        chart.run {
+            //그래프에 수치 구분선
+            setDrawGridBackground(false)
+            //드래그 여부
+            isDragEnabled = false
+            //터치 여부
+            setTouchEnabled(false)
+            //X축으로 늘리기
+            isScaleXEnabled = false
+            //Y축으로 늘리기
+            isScaleYEnabled = false
+            //라벨 설정
+            description.text = "(평균가 기준)"
+            //라벨 사이즈 설정
+            description.textSize = 13f
+            //데이터 없을 때 나오는 텍스트
+            setNoDataText("데이터가 존재하지 않습니다.")
+            //y축의 자동 스케일링 활성화
+            isAutoScaleMinMaxEnabled = true
+
+            xAxis.run {
+                //X축 노출 여부
+                isEnabled = true
+                //X축 노출
+                setDrawAxisLine(false)
+                //X축 grid 노출
+                setDrawGridLines(true)
+                //라벨 위치 설정
+                position = XAxis.XAxisPosition.BOTTOM
+                //간격 설정
+                granularity = 1f
+                //라벨 크기
+                textSize = 15f
+                //라벨 색상
+                textColor = Color.parseColor("#2C5044")
+            }
+
+            axisLeft.run {
+                //Y축 왼쪽 노출
+                isEnabled = false
+                //Y축 왼쪽 라인 노출
+                setDrawAxisLine(false)
+                //Y축 왼쪽 라인 grid 노출
+                setDrawGridLines(false)
+                //Y축 왼쪽 라인에 라벨 노출
+                setDrawLabels(false)
+            }
+
+            axisRight.run {
+                //Y축 오른쪽 라인 노출
+                setDrawAxisLine(false)
+                //Y축 오른쪽 라인 grid 노출
+                setDrawGridLines(false)
+                //Y축 오른쪽 라인 사용
+                isEnabled = false
+            }
+        }
     }
 }
