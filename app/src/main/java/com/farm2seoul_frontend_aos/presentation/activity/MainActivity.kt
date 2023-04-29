@@ -1,11 +1,12 @@
 package com.farm2seoul_frontend_aos.presentation.activity
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ScrollView
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.farm2seoul_frontend_aos.presentation.adapter.FragmentViewPagerAdapter
 import com.farm2seoul_frontend_aos.R
 import com.farm2seoul_frontend_aos.databinding.ActivityMainBinding
@@ -23,15 +24,13 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = mBinding!!
     private lateinit var viewPagerAdapter: FragmentViewPagerAdapter
     private val mainActivityViewModel: MainActivityViewModel by viewModels()
-    private var dailyAuction: DailyAuction? = null
-    private var fragment2: Information? = null
-    private var fragment3: Favorites? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         fragmentManage()
 
         binding.searchButton.setOnClickListener {
@@ -45,10 +44,9 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
+    /** ViewPager + TabLayout + Fragment **/
     private fun fragmentManage() {
         val fragmentList = listOf(DailyAuction(), Information(), Favorites())
-
-        /** ViewPager2 Fragment code */
 
         val tabName = listOf("일별경매", "정보 마당", "즐겨찾기")
         val tabIcon = listOf(R.drawable.daily_auction, R.drawable.store_info, R.drawable.star)
@@ -62,69 +60,35 @@ class MainActivity : AppCompatActivity() {
             tab.setIcon(tabIcon[pos])
         }.attach()
 
-
-        /*fragment1 = Fragment1()
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_layout, fragment1!!).commit()*/
-
-        //replaceView(fragmentList[0])
-
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                //binding.scrollLayout.fullScroll(NestedScrollView.FOCUS_UP)
-                /*when (tab?.position) {
-                    0 -> replaceView(fragmentList[0])
-                    1 -> replaceView(fragmentList[1])
-                    2 -> replaceView(fragmentList[2])
-                }*/
-                /*when (tab?.position) {
-                    0 -> {
-                        if (fragment1 == null) {
-                            fragment1 = Fragment1()
-                            supportFragmentManager.beginTransaction().add(R.id.fragment_layout, fragment1!!).commit()
-                        }
-                        if (fragment1 != null) supportFragmentManager.beginTransaction().show(fragment1!!).commit()
-                        if (fragment2 != null) supportFragmentManager.beginTransaction().hide(fragment2!!).commit()
-                        if (fragment3 != null) supportFragmentManager.beginTransaction().hide(fragment3!!).commit()
-                    }
-                    1 -> {
-                        if (fragment2 == null) {
-                            fragment2 = Fragment2()
-                            supportFragmentManager.beginTransaction().add(R.id.fragment_layout, fragment2!!).commit()
-                        }
-                        if (fragment1 != null) supportFragmentManager.beginTransaction().hide(fragment1!!).commit()
-                        if (fragment2 != null) supportFragmentManager.beginTransaction().show(fragment2!!).commit()
-                        if (fragment3 != null) supportFragmentManager.beginTransaction().hide(fragment3!!).commit()
-                    }
-                    2 -> {
-                        if (fragment3 == null) {
-                            fragment3 = Fragment3()
-                            supportFragmentManager.beginTransaction().add(R.id.fragment_layout, fragment3!!).commit()
-                        }
-                        if (fragment1 != null) supportFragmentManager.beginTransaction().hide(fragment1!!).commit()
-                        if (fragment2 != null) supportFragmentManager.beginTransaction().hide(fragment2!!).commit()
-                        if (fragment3 != null) supportFragmentManager.beginTransaction().show(fragment3!!).commit()
-                    }
-                }*/
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
             }
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
-                //binding.scrollLayout.fullScroll(NestedScrollView.FOCUS_UP)
+                when (tab?.position) {
+                    0 -> {
+                        val view = fragmentList[0].view?.findViewById<RecyclerView>(R.id.daily_auction_recycler_view)
+                        view?.smoothScrollToPosition(0)
+                    }
+
+                    1 -> {
+                        val view = fragmentList[1].view?.findViewById<ScrollView>(R.id.info_scroll_view)
+                        view?.fullScroll(ScrollView.FOCUS_UP)
+                    }
+
+                    2 -> {
+                        val view = fragmentList[2].view?.findViewById<RecyclerView>(R.id.favorite_recycler_view)
+                        view?.smoothScrollToPosition(0)
+                    }
+                }
             }
         })
     }
 
-    private fun replaceView(tab: Fragment) {
-        var selectedFragment: Fragment? = null
-        selectedFragment = tab
-        selectedFragment?.let {
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_layout, it).commit()
-        }
-    }
-
-    // Fragment 새로고침
+    /** Fragment 새로고침 **/
     fun refreshFragment(fragment: Fragment) {
         viewPagerAdapter.refreshFragment(0, fragment)
     }

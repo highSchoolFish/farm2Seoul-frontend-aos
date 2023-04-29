@@ -28,7 +28,7 @@ class InformationDetail : AppCompatActivity() {
             finish()
         }
 
-        binding.toggleButton.addOnButtonCheckedListener { group, checkedId, isChecked ->
+        binding.toggleButton.addOnButtonCheckedListener { _, checkedId, isChecked ->
             if (isChecked) {
                 when (checkedId) {
                     R.id.garak_button -> {

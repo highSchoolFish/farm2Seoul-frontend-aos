@@ -56,16 +56,6 @@
         android:paddingBottom="10dp"
         android:orientation="horizontal">
 
-        <!--<Button
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:id="@+id/cancel_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="15dp"
-            android:layout_marginRight="10dp"
-            android:text="취소"/>-->
-
         <Button
             style="@style/Widget.Material3.Button"
             android:id="@+id/save_button"

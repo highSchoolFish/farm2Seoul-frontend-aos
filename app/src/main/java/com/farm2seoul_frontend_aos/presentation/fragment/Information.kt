@@ -50,12 +50,14 @@ class Information : Fragment(), View.OnClickListener {
         super.onDestroy()
     }
 
+    /** 시장 지도 사진 리스트 **/
     private val imageSlideList = ArrayList<Int>().apply {
         add(R.drawable.market_place1)
         add(R.drawable.market_place2)
         add(R.drawable.market_place3)
     }
 
+    /** 시장 지도 사진 ViewPager 어댑터 **/
     private fun setImageSliderAdapter() {
         binding.imageSliderViewpager.apply {
             adapter = ImageSlideViewPagerAdapter(imageSlideList)

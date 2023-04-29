@@ -28,34 +28,20 @@ class DailyAuction : Fragment() {
     ): View? {
         mBinding = FragmentDailyAuctionBinding.inflate(inflater, container, false)
 
+        //검색 결과 Observing -> RecyclerView 어댑터 설정
         fragment1ViewModel.getSearch().observe(viewLifecycleOwner, Observer {
-            if (it != "") {
-                recyclerViewAdapter = PagingDataRecyclerViewAdapter()
-                binding.recyclerView.adapter = recyclerViewAdapter
-
-                lifecycleScope.launch {
-                    fragment1ViewModel.getSearchData.collectLatest {
-                        recyclerViewAdapter.submitData(it)
-                    }
-                }
-            } else {
-                recyclerViewAdapter = PagingDataRecyclerViewAdapter()
-                binding.recyclerView.adapter = recyclerViewAdapter
-
-                lifecycleScope.launch {
-                    fragment1ViewModel.getData.collectLatest {
-                        recyclerViewAdapter.submitData(it)
-                    }
-                }
-            }
+            if (it != "") setSearchAdapter()
+            else setBasicAdapter()
         })
 
         //날짜 통신
         fragment1ViewModel.date()
+
         //날짜 통신 값 Observe
         fragment1ViewModel.date.observe(viewLifecycleOwner, Observer {
             binding.auctionDate.text = it
         })
+
         //날짜 통신시 Exception 발생시 Error Fragment 호출
         fragment1ViewModel.error.observe(viewLifecycleOwner, Observer {
             error = it
@@ -69,21 +55,14 @@ class DailyAuction : Fragment() {
                 binding.nonAuctionData.visibility = View.INVISIBLE
             }
         })
+
         //Retry 클릭시 프래그먼트 재호출
         binding.retry.setOnClickListener {
-            recyclerViewAdapter = PagingDataRecyclerViewAdapter()
-            binding.recyclerView.adapter = recyclerViewAdapter
-
-            lifecycleScope.launch {
-                fragment1ViewModel.getData.collectLatest {
-                    recyclerViewAdapter.submitData(it)
-                }
-            }
+            setBasicAdapter()
             fragment1ViewModel.date()
             (activity as MainActivity).refreshFragment(this)
         }
 
-        //setAdapter()
         return binding.root
     }
 
@@ -92,23 +71,27 @@ class DailyAuction : Fragment() {
         super.onDestroy()
     }
 
-    private fun setAdapter() {
+    /** 전체 일별 경매 목록 RecyclerView 어댑터 **/
+    private fun setBasicAdapter() {
         recyclerViewAdapter = PagingDataRecyclerViewAdapter()
-        binding.recyclerView.adapter = recyclerViewAdapter
+        binding.dailyAuctionRecyclerView.adapter = recyclerViewAdapter
 
         lifecycleScope.launch {
             fragment1ViewModel.getData.collectLatest {
                 recyclerViewAdapter.submitData(it)
             }
         }
+    }
 
-        /*lifecycleScope.launch {
+    /** 검색 일별 경매 목록 RecyclerView 어댑터 **/
+    private fun setSearchAdapter() {
+        recyclerViewAdapter = PagingDataRecyclerViewAdapter()
+        binding.dailyAuctionRecyclerView.adapter = recyclerViewAdapter
 
-            fragment1ViewModel.auctionResult.observe(viewLifecycleOwner) {
-                recyclerViewAdapter.submitData(lifecycle, it)
+        lifecycleScope.launch {
+            fragment1ViewModel.getSearchData.collectLatest {
+                recyclerViewAdapter.submitData(it)
             }
-
-            fragment1ViewModel.getSearchData()
-        }*/
+        }
     }
 }

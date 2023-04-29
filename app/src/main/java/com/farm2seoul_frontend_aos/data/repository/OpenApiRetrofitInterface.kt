@@ -5,7 +5,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface OpenApiRetrofitInterface {
-
     @GET("/766c476c676b6e793132345770716c57/json/GarakGradePrice/{start_index}/{end_index}/{pum_name}")
     suspend fun getGarakGradePrice(
         @Path("start_index") start_index: String,

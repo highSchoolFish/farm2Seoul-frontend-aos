@@ -1,12 +1,7 @@
 package com.farm2seoul_frontend_aos.presentation.viewmodel
 
-import android.graphics.Color
-import android.util.Log
-import androidx.core.view.size
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.farm2seoul_frontend_aos.data.model.ThisWeekResponse
 import com.farm2seoul_frontend_aos.data.repository.Farm2SeoulRetrofitBuilder
 import com.farm2seoul_frontend_aos.data.repository.Farm2SeoulRetrofitInterface
 import com.github.mikephil.charting.charts.LineChart
@@ -19,13 +14,18 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DailyAuctionDetailViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle
-) : ViewModel() {
+class DailyAuctionDetailViewModel @Inject constructor() : ViewModel() {
 
     private val retrofitInterface: Farm2SeoulRetrofitInterface = Farm2SeoulRetrofitBuilder.create()
 
-    fun setThisWeekData(chart : LineChart, name: String, grade: String, quantity: String, unit: String) {
+    /** 이번주 가격 변동 데이터 **/
+    fun setThisWeekData(
+        chart: LineChart,
+        name: String,
+        grade: String,
+        quantity: String,
+        unit: String
+    ) {
         viewModelScope.launch {
             chart.setScaleEnabled(false)
 
@@ -48,7 +48,14 @@ class DailyAuctionDetailViewModel @Inject constructor(
         }
     }
 
-    fun setRecent4WeekData(chart : LineChart, name: String, grade: String, quantity: String, unit: String) {
+    /** 최근 4주간 데이터 **/
+    fun setRecent4WeekData(
+        chart: LineChart,
+        name: String,
+        grade: String,
+        quantity: String,
+        unit: String
+    ) {
         viewModelScope.launch {
             chart.setScaleEnabled(false)
 
@@ -71,7 +78,14 @@ class DailyAuctionDetailViewModel @Inject constructor(
         }
     }
 
-    fun setRecent3MonthData(chart : LineChart, name: String, grade: String, quantity: String, unit: String) {
+    /** 최근 3개월간 데이터 **/
+    fun setRecent3MonthData(
+        chart: LineChart,
+        name: String,
+        grade: String,
+        quantity: String,
+        unit: String
+    ) {
         viewModelScope.launch {
             chart.setScaleEnabled(false)
 
@@ -94,7 +108,8 @@ class DailyAuctionDetailViewModel @Inject constructor(
         }
     }
 
-    fun initChart(chart : LineChart) {
+    /** 차트 설정 **/
+    fun initChart(chart: LineChart) {
         //그래프에 수치 구분선
         chart.setDrawGridBackground(false)
         //드래그 여부

@@ -1,6 +1,5 @@
 package com.farm2seoul_frontend_aos.presentation.adapter
 
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,14 +7,13 @@ import androidx.core.content.ContextCompat
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.farm2seoul_frontend_aos.R
 import com.farm2seoul_frontend_aos.data.model.RowItems
 import com.farm2seoul_frontend_aos.databinding.DailyAuctionCardBinding
 import com.farm2seoul_frontend_aos.presentation.activity.DailyAuctionDetail
 import java.text.DecimalFormat
 
-class PagingDataRecyclerViewAdapter() :
+class PagingDataRecyclerViewAdapter :
     PagingDataAdapter<RowItems, PagingDataRecyclerViewAdapter.ViewHolder>(ItemDiffCallback) {
 
     override fun onCreateViewHolder(
@@ -64,7 +62,7 @@ class PagingDataRecyclerViewAdapter() :
         }
     }
 
-    //ItemDiffCallback : DiffUtil.Callback 상속하는 콜백 클래스
+    /** ItemDiffCallback : DiffUtil.Callback 상속하는 콜백 클래스 **/
     object ItemDiffCallback : DiffUtil.ItemCallback<RowItems>() {
         //두 객체를 비교해 링크가 같은지 체크
         override fun areItemsTheSame(oldItem: RowItems, newItem: RowItems): Boolean {

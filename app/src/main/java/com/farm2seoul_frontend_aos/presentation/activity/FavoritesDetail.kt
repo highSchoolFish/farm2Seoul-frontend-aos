@@ -1,7 +1,6 @@
 package com.farm2seoul_frontend_aos.presentation.activity
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.farm2seoul_frontend_aos.databinding.FavoritesDetailBinding
 import com.farm2seoul_frontend_aos.presentation.adapter.FavoritesDetailRecyclerViewAdapter
@@ -26,10 +25,6 @@ class FavoritesDetail : AppCompatActivity() {
             finish()
         }
 
-        /*binding.cancelButton.setOnClickListener {
-            finish()
-        }*/
-
         binding.saveButton.setOnClickListener {
             finish()
         }
@@ -42,8 +37,9 @@ class FavoritesDetail : AppCompatActivity() {
         super.onDestroy()
     }
 
+    /** CSV 파일 로드, RecyclerView 어댑터 연결 **/
     private fun initRecycler() {
-        favoritesDetailRecyclerViewAdapter = FavoritesDetailRecyclerViewAdapter(this)
+        favoritesDetailRecyclerViewAdapter = FavoritesDetailRecyclerViewAdapter()
         binding.favoriteRecyclerView.adapter = favoritesDetailRecyclerViewAdapter
 
         val assetManager = this.assets
