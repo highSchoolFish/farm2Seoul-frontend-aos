@@ -21,7 +21,7 @@
             android:layout_marginRight="16dp"
             android:orientation="vertical">
 
-            <com.farm2seoul_frontend_aos.presentation.adapter.NestedScrollableHost
+            <sim.farm2seoul.presentation.adapter.NestedScrollableHost
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -30,7 +30,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
 
-            </com.farm2seoul_frontend_aos.presentation.adapter.NestedScrollableHost>
+            </sim.farm2seoul.presentation.adapter.NestedScrollableHost>
 
             <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
                 android:id="@+id/image_slider_viewpager_indicator"

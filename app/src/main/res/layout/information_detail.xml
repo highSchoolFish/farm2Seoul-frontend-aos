@@ -82,7 +82,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
+                    android:layout_gravity="center"
                     android:src="@drawable/garak1"/>
 
                 <TextView
@@ -94,9 +94,9 @@
                     android:textColor="?attr/colorPrimary"/>
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
+                    android:layout_gravity="center"
                     android:src="@drawable/garak2"/>
 
             </LinearLayout>
@@ -118,9 +118,9 @@
                     android:textColor="?attr/colorPrimary"/>
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
+                    android:layout_gravity="center"
                     android:src="@drawable/gangseo"/>
 
             </LinearLayout>

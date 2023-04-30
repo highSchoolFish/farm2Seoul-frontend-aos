@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.farm2seoul_frontend_aos'
+    namespace 'sim.farm2seoul'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.farm2seoul_frontend_aos"
+        applicationId "sim.farm2seoul"
         minSdk 24
         targetSdk 33
         versionCode 1
