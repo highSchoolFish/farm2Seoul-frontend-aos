@@ -39,6 +39,7 @@
 
     <style name="Theme.MySplashScreen.Splash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/seed</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
         <item name="windowSplashScreenAnimationDuration">1000</item>
         <item name="postSplashScreenTheme">@style/Theme.Farm2Seoulfrontendaos</item>
     </style>
