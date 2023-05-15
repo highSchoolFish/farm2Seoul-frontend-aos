@@ -5,6 +5,6 @@ import com.google.gson.annotations.SerializedName
 data class Recent4WeekResponse (
     @SerializedName("weekName")
     val weekName : String,
-    @SerializedName("averagePrice")
+    @SerializedName("average")
     val averagePrice : Double
 )
