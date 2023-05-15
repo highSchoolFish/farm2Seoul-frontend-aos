@@ -1,6 +1,7 @@
 package sim.farm2seoul.presentation.viewmodel
 
 import android.graphics.Color
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.mikephil.charting.charts.LineChart
@@ -157,6 +158,8 @@ class DailyAuctionDetailViewModel @Inject constructor() : ViewModel() {
                 textSize = 15f
                 //라벨 색상
                 textColor = Color.parseColor("#2C5044")
+                spaceMin = 0.2f
+                spaceMax = 0.2f
             }
 
             axisLeft.run {
